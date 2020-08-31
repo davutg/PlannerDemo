@@ -1,0 +1,14 @@
+package com.baeldung.optaplanner
+
+import com.baeldung.optaplanner.Lecture;
+import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScoreHolder;
+
+global HardSoftScoreHolder scoreHolder;
+
+rule "noNullRoomPeriod"
+    when
+        Lecture( roomNumber == 1 );
+        Lecture( period == 1 );
+    then
+        scoreHolder.addHardConstraintMatch(kcontext, -1);
+end
